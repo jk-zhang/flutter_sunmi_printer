@@ -26,9 +26,9 @@ class SunmiPrinter {
   static const String PRINT_TEXT = "printText";
   static const String PRINT_ROW = "printRow";
   static const String PRINT_IMAGE = "printImage";
+  static const String PRINT_QRCODE = "printQrCode";
 
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_sunmi_printer');
+  static const MethodChannel _channel = const MethodChannel('flutter_sunmi_printer');
 
   static Future<void> reset() async {
     await _channel.invokeMethod(RESET);
@@ -94,8 +94,7 @@ class SunmiPrinter {
       throw Exception('Total columns width must be equal to 12');
     }
 
-    final colsJson = List<Map<String, String>>.from(
-        cols.map<Map<String, String>>((SunmiCol col) => col.toJson()));
+    final colsJson = List<Map<String, String>>.from(cols.map<Map<String, String>>((SunmiCol col) => col.toJson()));
 
     await _channel.invokeMethod(PRINT_ROW, {
       "cols": json.encode(colsJson),
@@ -129,6 +128,14 @@ class SunmiPrinter {
     await _channel.invokeMethod(PRINT_IMAGE, {
       "base64": base64,
       "align": align.value,
+    });
+  }
+
+  static Future<void> qrCode(String text, int moduleSize, int errorlevel) async {
+    await _channel.invokeMethod(PRINT_QRCODE, {
+      "text": text,
+      "moduleSize": moduleSize,
+      "errorlevel": errorlevel,
     });
   }
 }

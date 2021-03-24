@@ -144,4 +144,9 @@ public class FlutterSunmiPrinterModule {
     AidlUtil.getInstance().printBitmap(BitmapUtil.convertToThumb(bytes, 280), align);
     // AidlUtil.getInstance().lineWrap(1);
   }
+
+  public void printQRCode(String text, int moduleSize, int errorlevel) {
+    AidlUtil.getInstance().printQr(text, moduleSize, errorlevel);
+    // AidlUtil.getInstance().lineWrap(1);
+  }
 }

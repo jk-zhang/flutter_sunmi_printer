@@ -20,6 +20,7 @@ class SunmiSize {
   static const xs = SunmiSize._internal(14);
   static const sm = SunmiSize._internal(18);
   static const md = SunmiSize._internal(24);
+  static const jk = SunmiSize._internal(28);
   static const lg = SunmiSize._internal(36);
   static const xl = SunmiSize._internal(42);
 }
